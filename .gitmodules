@@ -1,0 +1,3 @@
+[submodule "stdcomm/lint"]
+	path = stdcomm/lint
+	url = https://git.woa.com/jaredhuang/mna-lint.git

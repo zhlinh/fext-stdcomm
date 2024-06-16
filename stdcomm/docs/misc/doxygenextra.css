@@ -1,0 +1,274 @@
+body code {
+	margin: 0;
+	border: 1px solid #ddd;
+	background-color: #f8f8f8;
+	border-radius: 3px;
+	padding: 0;
+}
+
+a {
+	color: #4183c4;
+}
+
+a.el {
+	font-weight: normal;
+}
+
+body, table, div, p, dl {
+	color: #333333;
+	font-family: Helvetica, arial, freesans, clean, sans-serif, 'Segoe UI Emoji', 'Segoe UI Symbol';
+	font-size: 15px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	line-height: 25.5px;
+}
+
+body {
+	background-color: #eee;
+}
+
+div.header {
+	background-image: none;
+	background-color: white;
+	margin: 0px;
+	border: 0px;
+}
+
+div.headertitle {
+	width: 858px;
+	margin: 30px;
+	padding: 0px;
+}
+
+div.toc {
+	background-color: #f8f8f8;
+	border-color: #ddd;
+	margin-right: 10px;
+	margin-left: 20px;
+}
+div.toc h3 {
+	color: #333333;
+	font-family: Helvetica, arial, freesans, clean, sans-serif, 'Segoe UI Emoji', 'Segoe UI Symbol';
+	font-size: 18px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+}
+div.toc li {
+	color: #333333;
+	font-family: Helvetica, arial, freesans, clean, sans-serif, 'Segoe UI Emoji', 'Segoe UI Symbol';
+	font-size: 12px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+}
+
+.title {
+	font-size: 2.5em;
+	line-height: 63.75px;
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 15px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+}
+
+.summary {
+	float: none !important;
+	width: auto !important;
+	padding-top: 10px;
+	padding-right: 10px !important;
+}
+
+.summary + .headertitle .title {
+	font-size: 1.5em;
+	line-height: 2.0em;
+}
+
+body h1 {
+	font-size: 2em;
+	line-height: 1.7;
+	border-bottom: 1px solid #eee;
+	margin: 1em 0 15px;
+	padding: 0;
+	overflow: hidden;
+}
+
+body h2 {
+	font-size: 1.5em;
+	line-height: 1.7;
+	margin: 1em 0 15px;
+	padding: 0;
+}
+
+pre.fragment {
+	font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+	font-size: 13px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	line-height: 19px;
+}
+
+table.doxtable th {
+	background-color: #f8f8f8;
+	color: #333333;
+	font-size: 15px;
+}
+
+table.doxtable td, table.doxtable th {
+	border: 1px solid #ddd;
+}
+
+#doc-content {
+	background-color: #fff;
+	width: 918px;
+	height: auto !important;
+	margin-left: 270px !important;
+}
+
+div.contents {
+	width: 858px;
+	margin: 30px;
+}
+
+div.line {
+	font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+	font-size: 13px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	line-height: 19px;	
+}
+
+tt, code, pre {
+	font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+	font-size: 12px;
+}
+
+div.fragment {
+	background-color: #f8f8f8;
+	border: 1px solid #ddd;
+	font-size: 13px;
+	line-height: 19px;
+	overflow: auto;
+	padding: 6px 10px;
+	border-radius: 3px;
+}
+
+#topbanner {
+	position: fixed;
+	margin: 15px;
+	z-index: 101;
+}
+
+#projectname
+{
+	font-family: Helvetica, arial, freesans, clean, sans-serif, 'Segoe UI Emoji', 'Segoe UI Symbol';
+	font-size: 38px;
+	font-weight: bold;
+	line-height: 63.75px;
+	margin: 0px;
+	padding: 2px 0px;
+}
+    
+#projectbrief
+{
+	font-family: Helvetica, arial, freesans, clean, sans-serif, 'Segoe UI Emoji', 'Segoe UI Symbol';
+	font-size: 16px;
+	line-height: 22.4px;
+	margin: 0px 0px 13px 0px;
+	padding: 2px;
+}
+
+/* side bar and search */
+
+#side-nav
+{
+	padding: 10px 0px 20px 20px;
+	border-top: 60px solid #2980b9;
+	background-color: #343131;
+	width: 250px !important;
+	height: 100% !important;
+	position: fixed;
+}
+
+#nav-tree
+{
+	background-color: transparent;
+	background-image: none;
+	height: 100% !important;
+}
+
+#nav-tree .label
+{
+	font-family: Helvetica, arial, freesans, clean, sans-serif, 'Segoe UI Emoji', 'Segoe UI Symbol';
+	line-height: 25.5px;	
+	font-size: 15px;
+}
+
+#nav-tree
+{
+	color: #b3b3b3;
+}
+
+#nav-tree .selected {
+	background-image: none;
+}
+
+#nav-tree a
+{
+	color: #b3b3b3;
+}
+
+#github
+{
+	position: fixed;
+	left: auto;
+	right: auto;
+	width: 250px;
+}
+
+#MSearchBox
+{
+	margin: 20px;
+	left: 40px;
+	right: auto;
+	position: fixed;
+	width: 180px;
+}
+
+#MSearchField
+{
+	width: 121px;
+}
+
+#MSearchResultsWindow
+{
+	left: 45px !important;
+}
+
+#nav-sync
+{
+	display: none;
+}
+
+.ui-resizable .ui-resizable-handle
+{
+	width: 0px;
+}
+
+#nav-path
+{
+	display: none;
+}
+
+/* external link icon */
+div.contents a[href ^= "http"]:after {
+     content: " " url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAVklEQVR4Xn3PgQkAMQhDUXfqTu7kTtkpd5RA8AInfArtQ2iRXFWT2QedAfttj2FsPIOE1eCOlEuoWWjgzYaB/IkeGOrxXhqB+uA9Bfcm0lAZuh+YIeAD+cAqSz4kCMUAAAAASUVORK5CYII=);
+}
+
+.githublogo {
+	content: url(data:image/png;base64,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);
+}

@@ -1,0 +1,13 @@
+# Changes here will be overwritten by Copier
+_commit: 5c83f19
+_src_path: https://github.com/zhlinh/ccgo-template.git
+cpy_document_url: https://github.com/zhlinh/fext-stdcomm/wiki
+cpy_git_repo_url: https://github.com/zhlinh/fext-stdcomm.git
+cpy_project_dependencies: EMPTY
+cpy_project_group_id: com.mojet.fext
+cpy_project_name: STDCOMM
+cpy_project_relative_path: stdcomm
+cpy_project_version: 25.2.9519653
+cpy_user_email: zhlinhng@gmail.com
+cpy_user_name: zhlinh
+cpy_with_include_src_tests: true

@@ -1,0 +1,27 @@
+#
+# Copyright 2024 zhlinh and ccgo Project Authors. All rights reserved.
+# Use of this source code is governed by a MIT-style
+# license that can be found at
+#
+# https://opensource.org/license/MIT
+#
+# The above copyright notice and this permission
+# notice shall be included in all copies or
+# substantial portions of the Software.
+
+cmake_minimum_required(VERSION 3.14)
+
+project("${COMM_X_PROJECT_NAME}-external" NONE)
+
+include(ExternalProject)
+ExternalProject_Add(
+  "${COMM_X_PROJECT_NAME}"
+  GIT_REPOSITORY    "${COMM_X_GIT_REPO_URL}"
+  GIT_TAG           "${COMM_X_GIT_TAG_OR_COMMIT_HASH}"
+  SOURCE_DIR        "${COMM_X_SRC_DIR}"
+  BINARY_DIR        "${CMAKE_BINARY_DIR}/${COMM_X_PROJECT_NAME}-build"
+  CONFIGURE_COMMAND "${COMM_X_CONFIGURE_COMMAND}"
+  BUILD_COMMAND     "${COMM_X_BUILD_COMMAND}"
+  INSTALL_COMMAND   "${COMM_X_INSTALL_COMMAND}"
+  TEST_COMMAND      ""
+)

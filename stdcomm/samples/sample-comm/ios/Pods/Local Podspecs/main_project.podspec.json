@@ -1,0 +1,35 @@
+{
+  "name": "main_project",
+  "version": "1.0",
+  "homepage": "Link to the Module",
+  "source": {
+    "http": ""
+  },
+  "authors": "",
+  "license": "",
+  "summary": "Some description for the Shared Module",
+  "vendored_frameworks": [
+    "cmake_build/iOS/Darwin.out/*.*framework",
+    "third_party/**comm/lib/ios/*.*framework"
+  ],
+  "libraries": [
+    "c++",
+    "z"
+  ],
+  "frameworks": "SystemConfiguration",
+  "platforms": {
+    "ios": "14.1"
+  },
+  "pod_target_xcconfig": {
+    "KOTLIN_PROJECT_PATH": ":main_project",
+    "PRODUCT_MODULE_NAME": "main_project"
+  },
+  "script_phases": [
+    {
+      "name": "Build common",
+      "execution_position": "before_compile",
+      "shell_path": "/bin/sh",
+      "script": "                if [ \"YES\" = \"$COCOAPODS_SKIP_KOTLIN_BUILD\" ]; then\n                  echo \"Skipping Gradle build task invocation due to COCOAPODS_SKIP_KOTLIN_BUILD environment variable set to \"YES\"\"\n                  exit 0\n                fi\n                set -ev\n                REPO_ROOT=\"$PODS_TARGET_SRCROOT\"\n                python3 $REPO_ROOT/build_ios.py 1\n"
+    }
+  ]
+}

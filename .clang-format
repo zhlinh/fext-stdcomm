@@ -1,0 +1,27 @@
+Language: Cpp
+BasedOnStyle: Google
+ColumnLimit: 120
+
+# the pointer alignment style, if true, the pointer will be force aligned to the variable name
+DerivePointerAlignment: false
+
+# default the pointer will be aligned to the variable name
+PointerAlignment: Right
+
+# Only sort headers in each include block
+SortIncludes: true
+IncludeBlocks: Preserve
+
+# let #if/#else/#endif macro keep macro content indented:
+#   #if defined(WIN)
+#   #  include <windows.h>
+#   #else
+#   #  include <curl.h>
+#   #endif
+IndentPPDirectives: AfterHash
+
+# Indent case labels one level from the switch statement
+ForEachMacros: [""]
+
+# line comment with "//" will be indented with 2 spaces
+SpacesBeforeTrailingComments: 2
