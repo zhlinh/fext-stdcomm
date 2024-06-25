@@ -12,6 +12,7 @@
 package com.ccgo.gradle.buildlogic.common
 
 import com.android.build.api.dsl.CommonExtension
+import com.ccgo.gradle.buildlogic.common.utils.getThirdPartyXCommLibs
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.kotlin

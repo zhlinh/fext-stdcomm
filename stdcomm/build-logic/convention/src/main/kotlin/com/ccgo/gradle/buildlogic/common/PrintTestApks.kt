@@ -31,6 +31,9 @@ import org.gradle.api.tasks.TaskAction
 import org.gradle.work.DisableCachingByDefault
 import java.io.File
 
+/**
+ * Configures the print APKs task for the project.
+ */
 internal fun Project.configurePrintApksTask(extension: AndroidComponentsExtension<*, *, *>) {
     extension.onVariants { variant ->
         if (variant is HasAndroidTest) {

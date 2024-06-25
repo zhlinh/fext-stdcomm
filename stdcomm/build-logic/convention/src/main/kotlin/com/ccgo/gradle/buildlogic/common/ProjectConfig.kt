@@ -11,6 +11,12 @@
 
 package com.ccgo.gradle.buildlogic.common
 
+import com.ccgo.gradle.buildlogic.common.utils.getCurrentTag
+import com.ccgo.gradle.buildlogic.common.utils.getGitBranchName
+import com.ccgo.gradle.buildlogic.common.utils.getGitHeadTimeInfo
+import com.ccgo.gradle.buildlogic.common.utils.getGitRevision
+import com.ccgo.gradle.buildlogic.common.utils.getGitVersionCode
+import com.ccgo.gradle.buildlogic.common.utils.getPublishSuffix
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.configurationcache.extensions.capitalized

@@ -28,6 +28,8 @@ class AndroidRootConventionPlugin : Plugin<Project> {
             with(pluginManager) {
                 apply("org.jetbrains.kotlin.jvm")
                 apply("ccgo.android.lint")
+                apply("com.vanniktech.maven.publish")
+                apply("com.gradleup.nmcp")
                 apply("signing")
                 // apply build_config.gradle.kts
                 val buildConfigFile = "${rootDir}/build_config.gradle.kts"

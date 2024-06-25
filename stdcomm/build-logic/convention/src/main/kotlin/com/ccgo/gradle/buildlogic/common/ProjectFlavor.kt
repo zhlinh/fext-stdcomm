@@ -30,6 +30,9 @@ enum class ProjectFlavor(val dimension: FlavorDimension, val applicationIdSuffix
     prod(FlavorDimension.contentType)
 }
 
+/**
+ * Configures the flavors for the project.
+ */
 fun configureFlavors(
     commonExtension: CommonExtension<*, *, *, *, *, *>,
     flavorConfigurationBlock: ProductFlavor.(flavor: ProjectFlavor) -> Unit = {}

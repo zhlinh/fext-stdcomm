@@ -79,7 +79,8 @@ room = "2.6.1"
 secrets = "2.0.1"
 truth = "1.4.2"
 turbine = "1.0.0"
-mavenPublishPlugin = "0.28.0"
+mavenPublishPlugin = "0.29.0"
+mavenNmcpPlugin = "0.0.8"
 
 [libraries]
 accompanist-permissions = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "accompanist" }
@@ -173,7 +174,8 @@ firebase-performance-gradlePlugin = { group = "com.google.firebase", name = "per
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
 room-gradlePlugin = { group = "androidx.room", name = "room-gradle-plugin", version.ref = "room" }
-maven-publishPlugin = { group = "com.vanniktech.maven", name = "publish", version.ref = "mavenPublishPlugin" }
+maven-publishPlugin = { group = "com.vanniktech.maven.publish", name = "com.vanniktech.maven.publish.gradle.plugin", version.ref = "mavenPublishPlugin" }
+maven-nmcpPlugin = { group = "com.gradleup.nmcp", name = "com.gradleup.nmcp.gradle.plugin", version.ref = "mavenNmcpPlugin" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
@@ -194,6 +196,7 @@ roborazzi = { id = "io.github.takahirom.roborazzi", version.ref = "roborazzi" }
 room = { id = "androidx.room", version.ref = "room" }
 secrets = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secrets" }
 maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "mavenPublishPlugin" }
+maven-nmcp = { id = "com.gradleup.nmcp", version.ref = "mavenNmcpPlugin" }
 
 # Plugins defined by this project
 ccgo-android-application = { id = "ccgo.android.application", version = "unspecified" }
@@ -207,6 +210,7 @@ ccgo-android-library = { id = "ccgo.android.library", version = "unspecified" }
 ccgo-android-library-native-empty = { id = "ccgo.android.library.native.empty", version = "unspecified" }
 ccgo-android-library-native-cmake = { id = "ccgo.android.library.native.cmake", version = "unspecified" }
 ccgo-android-library-native-python = { id = "ccgo.android.library.native.python", version = "unspecified" }
+ccgo-android-pubilsh = { id = "ccgo.android.publish", version = "unspecified" }
 ccgo-android-library-compose = { id = "ccgo.android.library.compose", version = "unspecified" }
 ccgo-android-library-jacoco = { id = "ccgo.android.library.jacoco", version = "unspecified" }
 ccgo-android-lint = { id = "ccgo.android.lint", version = "unspecified" }

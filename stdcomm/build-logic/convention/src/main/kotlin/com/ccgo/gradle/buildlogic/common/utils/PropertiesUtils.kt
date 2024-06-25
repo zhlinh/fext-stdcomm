@@ -9,7 +9,7 @@
 // notice shall be included in all copies or
 // substantial portions of the Software.
 
-package com.ccgo.gradle.buildlogic.common
+package com.ccgo.gradle.buildlogic.common.utils
 
 import org.gradle.api.Project
 import java.io.File

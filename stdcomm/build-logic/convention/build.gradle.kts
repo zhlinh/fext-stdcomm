@@ -13,7 +13,6 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     `kotlin-dsl`
-    alias(libs.plugins.maven.publish) apply true
 }
 
 group = "com.ccgo.gradle.buildlogic"
@@ -36,6 +35,8 @@ dependencies {
     compileOnly(libs.kotlin.gradlePlugin)
     compileOnly(libs.ksp.gradlePlugin)
     compileOnly(libs.room.gradlePlugin)
+    compileOnly(libs.maven.publishPlugin)
+    compileOnly(libs.maven.nmcpPlugin)
     implementation(libs.truth)
 }
 
@@ -99,9 +100,6 @@ gradlePlugin {
         register("androidRoot") {
             id = "ccgo.android.root"
             implementationClass = "AndroidRootConventionPlugin"
-//            dependencies {
-//                implementation(libs.plugins.maven.publish)
-//            }
         }
         register("androidLibraryNativeEmpty") {
             id = "ccgo.android.library.native.empty"
@@ -114,6 +112,10 @@ gradlePlugin {
         register("androidLibraryNativeCmake") {
             id = "ccgo.android.library.native.cmake"
             implementationClass = "AndroidLibraryNativeCmakeConventionPlugin"
+        }
+        register("androidPublish") {
+            id = "ccgo.android.publish"
+            implementationClass = "AndroidPublishConventionPlugin"
         }
     }
 }

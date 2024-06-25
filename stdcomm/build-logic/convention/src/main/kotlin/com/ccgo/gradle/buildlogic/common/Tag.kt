@@ -11,6 +11,7 @@
 
 package com.ccgo.gradle.buildlogic.common
 
+import com.ccgo.gradle.buildlogic.common.utils.execCommand
 import org.gradle.api.Project
 import java.io.File
 

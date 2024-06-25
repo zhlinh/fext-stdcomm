@@ -12,6 +12,7 @@
 package com.ccgo.gradle.buildlogic.common
 
 import com.android.build.gradle.internal.tasks.factory.dependsOn
+import com.ccgo.gradle.buildlogic.common.utils.execCommand
 import org.gradle.api.Project
 import org.gradle.api.tasks.Copy
 import org.gradle.api.tasks.Delete

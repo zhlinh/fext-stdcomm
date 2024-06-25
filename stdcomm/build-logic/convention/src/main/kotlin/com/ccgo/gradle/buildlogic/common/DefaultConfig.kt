@@ -16,6 +16,9 @@ import com.android.build.api.dsl.LibraryExtension
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 
+/**
+ * Configures the default config for the project.
+ */
 internal fun Project.configureDefaultConfig(commonExtension: CommonExtension<*, *, *, *, *, *>) {
     extensions.configure<LibraryExtension> {
         defaultConfig {

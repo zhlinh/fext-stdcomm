@@ -9,11 +9,12 @@
 // notice shall be included in all copies or
 // substantial portions of the Software.
 
+import com.ccgo.gradle.buildlogic.common.configurePublish
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
 /**
- * for Convention project
+ * Publish plugin for Android projects.
  */
 class AndroidPublishConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
@@ -21,7 +22,11 @@ class AndroidPublishConventionPlugin : Plugin<Project> {
             with(pluginManager) {
                 apply("org.jetbrains.kotlin.jvm")
                 apply("ccgo.android.lint")
+                apply("com.vanniktech.maven.publish")
+                apply("com.gradleup.nmcp")
+                apply("signing")
             }
+            configurePublish()
         }
     }
 }

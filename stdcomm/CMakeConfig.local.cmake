@@ -1,5 +1,5 @@
 #
-# Copyright 2024 ccgo Project. All rights reserved.
+# Copyright 2024 zhlinh and ccgo Project Authors. All rights reserved.
 # Use of this source code is governed by a MIT-style
 # license that can be found at
 #
