@@ -35,6 +35,7 @@ class ProjectConfig(val project: Project) {
             }
         }
     }
+
     val mainCommProject
         get(): Project = project.rootProject.subprojects.find { it.name.startsWith("main") && !it.name.startsWith("empty") }!!
     val javaCompatibilityVersion = JavaVersion.VERSION_11
@@ -42,10 +43,16 @@ class ProjectConfig(val project: Project) {
     val versionName: String = project.libs.findVersion("commMainProject").get().toString()
     val isRelease: Boolean = project.libs.findVersion("commIsRelease").get().toString().toBoolean()
     val commGroupId: String = project.libs.findVersion("commGroupId").get().toString()
+    val commAndroidStl: String = project.libs.findVersion("commAndroidStl").get().toString()
+    private val commAndroidStlIsStatic: Boolean = commAndroidStl.endsWith("_static")
+    val androidStlSuffix = if (commAndroidStlIsStatic) "-stdembed" else ""
+    val commDependencies: String =
+        project.libs.findVersion("commDependencies").get().toString().replace("\\s".toRegex(), "")
     // remove blanks
-    val commDependencies: String = project.libs.findVersion("commDependencies").get().toString().replace("\\s".toRegex(), "")
     val commDependenciesAsList: List<String> = commDependencies.split(",")
-                                                .filter { it.isNotBlank() && it != "EMPTY" && it.contains(":") }
+            .filter {
+                it.isNotBlank() && it != "EMPTY" && it.contains(":")
+            }
     val commIsSignEnabled: Boolean = project.libs.findVersion("commIsSignEnabled").get().toString().toBoolean()
     val versionCode: String by lazy { getGitVersionCode() }
     val revision: String by lazy { getGitRevision() }
@@ -56,14 +63,17 @@ class ProjectConfig(val project: Project) {
     val projectName: String = project.rootProject.projectDir.name.split("/").last().uppercase()
     val projectNameUppercase: String = projectName.uppercase()
     val projectNameLowercase: String = projectName.lowercase()
-    val mainProjectArchiveAarName = "${projectNameUppercase}_ANDROID_SDK-${versionName}-${publishSuffix}.aar"
-    val mainProjectArchiveZipName = "(ARCHIVE)_${projectNameUppercase}_ANDROID_SDK-${versionName}-${publishSuffix}.zip"
+    val mainProjectArchiveAarName = getMainArchiveAarName(publishSuffix)
+    val mainProjectArchiveZipName = "(ARCHIVE)_${mainProjectArchiveAarName.removeSuffix(".aar")}.zip"
+
     // flavor prod
     val mainProjectAssembleProdTaskName = "assemble${ProjectFlavor.prod.name.capitalized()}Release"
     val mainProjectMergeProdJniTaskName = "merge${ProjectFlavor.prod.name.capitalized()}ReleaseJniLibFolders"
+
     // flavor debug
     val mainProjectAssembleDemoTaskName = "assemble${ProjectFlavor.demo.name.capitalized()}Release"
     val mainProjectMergeDemoJniTaskName = "merge${ProjectFlavor.demo.name.capitalized()}ReleaseJniLibFolders"
+
     // flavor debug
     // all flavor
     val mainProjectAssembleAllTaskName = "assembleRelease"
@@ -74,15 +84,22 @@ class ProjectConfig(val project: Project) {
     val minSdkVersion: Int = project.libs.findVersion("minSdkVersion").get().toString().toInt()
     val appMinSdkVersion: Int = project.libs.findVersion("appMinSdkVersion").get().toString().toInt()
     val targetSdkVersion: Int = project.libs.findVersion("targetSdkVersion").get().toString().toInt()
+
     // remove blanks
-    val cmakeAbiFilters: String = project.libs.findVersion("cmakeAbiFilters").get().toString().replace("\\s".toRegex(), "")
+    val cmakeAbiFilters: String =
+        project.libs.findVersion("cmakeAbiFilters").get().toString().replace("\\s".toRegex(), "")
     val cmakeAbiFiltersAsList: List<String> = cmakeAbiFilters.split(",")
-                                               .filter { it.isNotBlank() &&  it != "EMPTY" }
+            .filter { it.isNotBlank() && it != "EMPTY" }
     val cmakeVersion: String = project.libs.findVersion("cmakeVersion").get().toString()
+
     //  ndkVersion is r25c
     val ndkVersion: String = project.libs.findVersion("ndkVersion").get().toString()
     val ndkPath: String = System.getenv("NDK_ROOT") ?: ""
     val taskPrintPrefixFilters = listOf("assemble", "bundle", "publish", "merge")
+
+    fun getMainArchiveAarName(inputSuffix: String): String {
+        return "${projectNameUppercase}_ANDROID${androidStlSuffix.uppercase()}_SDK-${versionName}-${inputSuffix}.aar"
+    }
 
     fun print() {
         println("===============CCGO Build System=================")
@@ -104,6 +121,7 @@ class ProjectConfig(val project: Project) {
         println("$projectName isRelease:${isRelease}")
         println("$projectName publishSuffix:${publishSuffix}")
         println("$projectName currentTag:${currentTag}")
+        println("$projectName androidStl:${commAndroidStl}")
         println("$projectName dependencies:${commDependencies}")
         println("===========================================")
     }

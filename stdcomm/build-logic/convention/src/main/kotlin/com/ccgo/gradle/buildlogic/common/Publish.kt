@@ -30,23 +30,24 @@ import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.withType
 import org.gradle.plugins.signing.SigningExtension
-import org.gradle.util.GradleVersion
 
 private const val DEFAULT_CENTRAL_DOMAIN = "central.sonatype.com"
 // ./gradlew publishMainPublicationToMavenRepository --no-daemon
 private const val MAIN_PUBLICATION_NAME = "main"
 // ./gradlew publishTestPublicationToMavenRepository --no-daemon
 private const val TEST_PUBLICATION_NAME = "test"
+// ./gradlew publishMavenPublicationToMavenCentralRepository --no-daemon
+private const val MAVEN_PUBLICATION_NAME = "maven"
 
 /**
  * Configures the publishing for the project.
  */
 internal fun Project.configurePublish() {
-    configureSourcesAndJavaDoc()
-    setSystemEnv()
     project.afterEvaluate {
+        configureSourcesAndJavaDoc()
+        setSystemEnv()
         configureMaven()
-        if (GradleVersion.current() >= GradleVersion.version("4.8") && cfgs.commIsSignEnabled) {
+        if (cfgs.commIsSignEnabled) {
             configureSign()
         }
     }
@@ -60,6 +61,10 @@ private fun Project.configureSign() {
         sign {
             val publishing = project.extensions.getByName("publishing") as PublishingExtension
             val signingKey = getSigningInMemoryKey()
+            if (signingKey.isEmpty()) {
+                println("sign signingKey is empty, skip sign publication")
+                return@sign
+            }
             val signingPassword = getLocalProperties("signing.password", "")
             useInMemoryPgpKeys(signingKey, signingPassword)
             publishing.publications.asMap.filter { it.key == MAIN_PUBLICATION_NAME }.forEach { (_, publication) ->
@@ -89,18 +94,6 @@ private fun Project.configureMaven() {
 
 private fun Project.configureCentralMaven() {
     configureVanniktechCentralMaven()
-    // https://github.com/GradleUp/nmcp
-//    extensions.configure<nmcp.NmcpExtension> {
-////        publish(MAIN_PUBLICATION_NAME) {
-//        publishAllProjectsProbablyBreakingProjectIsolation {
-//            username = getLocalProperties("comm.maven.username0", "")
-//            password = getLocalProperties("comm.maven.password0", "")
-//            // publish manually from the portal
-//            publicationType = "USER_MANAGED"
-//            // or if you want to publish automatically
-//            // publicationType = "AUTOMATIC"
-//        }
-//    }
 }
 
 
@@ -109,12 +102,30 @@ private fun Project.configureVanniktechCentralMaven() {
     extensions.configure<com.vanniktech.maven.publish.MavenPublishBaseExtension> {
         coordinates(
             groupId = cfgs.commGroupId,
-            artifactId = cfgs.projectNameLowercase,
+            artifactId = getProjectArtifactId(),
             version = cfgs.versionName
         )
         publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
-        // sign after call publish
-        signAllPublications()
+        if (cfgs.commIsSignEnabled) {
+            // sign after call publish
+            signAllPublications()
+        }
+    }
+}
+
+private fun Project.configureNmcpCentralMaven() {
+    // https://github.com/GradleUp/nmcp
+    extensions.configure<nmcp.NmcpExtension> {
+        // or if want to publish only main publication
+        // publish(MAIN_PUBLICATION_NAME) {
+        publishAllProjectsProbablyBreakingProjectIsolation {
+            username = getLocalProperties("comm.maven.username0", "")
+            password = getLocalProperties("comm.maven.password0", "")
+            // publish manually from the portal
+            publicationType = "USER_MANAGED"
+            // or if you want to publish automatically
+            // publicationType = "AUTOMATIC"
+        }
     }
 }
 
@@ -173,22 +184,17 @@ private fun Project.configureCustomMaven() {
         publications {
             val publishConfig = mutableMapOf(
                 // main always use release
-                MAIN_PUBLICATION_NAME to "bin/${cfgs.projectNameUppercase}_ANDROID_SDK-${cfgs.versionName}-release.aar",
+                MAIN_PUBLICATION_NAME to "bin/${cfgs.getMainArchiveAarName("release")}",
             )
             if (!cfgs.isRelease) {
                 // if not release, add test publication
                 publishConfig[TEST_PUBLICATION_NAME] = "bin/${cfgs.mainProjectArchiveAarName}"
             }
-            (publications.getByName("maven") as? MavenPublication)?.apply {
-                configurePublication(this, MAIN_PUBLICATION_NAME,
+            (publications.getByName(MAVEN_PUBLICATION_NAME) as? MavenPublication)?.apply {
+                configurePublication(this, MAVEN_PUBLICATION_NAME,
                     publishConfig[MAIN_PUBLICATION_NAME]!!, false)
             }
-            val mavenCount = getLocalProperties("comm.maven.count", "0").toInt()
-            val mavenUrl0 = getLocalProperties("comm.maven.url0", "")
-//            if (mavenCount == 1 && mavenUrl0.contains(DEFAULT_CENTRAL_DOMAIN)) {
-//                 only one maven config and it is central.sonatype.com
-//                return@publications
-//            }
+
             for ((publishName, artifactName) in publishConfig) {
                 register(publishName, MavenPublication::class) {
                     configurePublication(this, publishName,
@@ -208,7 +214,7 @@ private fun Project.configurePublication(
     with(mavenPublication) {
         if (addFromComponent) {
             groupId = cfgs.commGroupId
-            artifactId = cfgs.projectNameLowercase
+            artifactId = getProjectArtifactId()
             if (publishName != TEST_PUBLICATION_NAME) {
                 version = cfgs.versionName
             } else {
@@ -216,24 +222,25 @@ private fun Project.configurePublication(
             }
             from(components["java"])
         }
-        tasks.withType<GenerateModuleMetadata> {
-            enabled = false
-        }
         val arts = artifacts.filter {
-            it.file.name.endsWith("javadoc.jar") || it.file.name.endsWith("sources.jar")
+            it.file.name.endsWith("javadoc.jar")
+                || it.file.name.endsWith("sources.jar")
+                || it.file.name.endsWith(".module")
         }
         components["java"].apply {
             setArtifacts(arts)
-            artifact(artifactName) {
-                classifier = "aar"
-            }
+            artifact(artifactName)
         }
         setArtifacts(arts)
-        artifact(artifactName) {
-            classifier = "aar"
+        artifact(artifactName)
+        tasks.withType<GenerateModuleMetadata> {
+            enabled = false
         }
-//        suppressAllPomMetadataWarnings()
-//        withBuildIdentifier()
+        println("PublishName: $publishName")
+        artifacts.forEach {
+            println("FilteredArtifact: ${it.file.name}")
+        }
+        println("------------")
 
         // add pom
         pom { configurePom(this, artifactName, mavenPublication.version) }  // pom
@@ -249,6 +256,7 @@ private fun Project.configurePom(config: MavenPom,
         description = "The ${cfgs.projectName} SDK"
         url = gitUrl
         version = versionName
+        packaging = if (artifactName.contains(".")) artifactName.split(".").last() else "aar"
 
         licenses {
             license {
@@ -271,8 +279,8 @@ private fun Project.configurePom(config: MavenPom,
 
         withXml {
             println("groupId: ${cfgs.commGroupId}")
-            println("artifactId: ${cfgs.projectNameLowercase}")
-            println("version: $version")
+            println("artifactId: ${getProjectArtifactId()}")
+            println("version: $versionName")
             println("artifactName: $artifactName")
             println("------------")
             val commDependencies = cfgs.commDependenciesAsList
@@ -328,13 +336,17 @@ private fun Project.getSigningInMemoryKey() : String {
 
 private fun Project.configureSourcesAndJavaDoc() {
     if (project.plugins.hasPlugin("com.android.library")) {
-        val library = project.extensions.findByType(com.android.build.api.dsl.LibraryExtension::class.java)!!
-        library.publishing {
+        val androidLibrary = project.extensions.findByType(com.android.build.api.dsl.LibraryExtension::class.java)!!
+        androidLibrary.publishing {
             singleVariant(ProjectFlavor.prod.name) {
                 withSourcesJar()
                 withJavadocJar()
             }
         }
+    } else if (project.plugins.hasPlugin("java")) {
+        val javaLibrary = project.extensions.findByType(org.gradle.api.plugins.JavaPluginExtension::class.java)!!
+        javaLibrary.withSourcesJar()
+        javaLibrary.withJavadocJar()
     }
 }
 
@@ -363,4 +375,8 @@ private fun Project.setSystemEnv() {
             }
         }
     }
+}
+
+private fun Project.getProjectArtifactId() : String {
+    return "${cfgs.projectNameLowercase}${cfgs.androidStlSuffix.lowercase()}"
 }

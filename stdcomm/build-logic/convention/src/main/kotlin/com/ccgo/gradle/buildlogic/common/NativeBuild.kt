@@ -97,7 +97,7 @@ internal fun Project.configureSubNativeBuildBase(
                     arguments("-GNinja") // to generate android_gradle_build.json
                     arguments("-DANDROID_PLATFORM=android-${cfgs.minSdkVersion}") // ndk platform
                     arguments("-DANDROID_TOOLCHAIN=clang") // use clang
-                    arguments("-DANDROID_STL=c++_shared") // NOTE: c++_shared.so should be included in app
+                    arguments("-DANDROID_STL=${cfgs.commAndroidStl}") // NOTE: if use c++_shared.so, should be included in app
                 }
             }
             ndk {

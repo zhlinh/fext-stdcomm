@@ -7,6 +7,7 @@ commDependencies = """
                     EMPTY
                    """
 commIsSignEnabled = "true"
+commAndroidStl = "c++_shared"
 compileSdkVersion = "34"
 buildToolsVersion = "34.0.0"
 minSdkVersion = "19"
