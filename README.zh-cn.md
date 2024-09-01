@@ -2,21 +2,21 @@
 
 > Android和iOS的基础库公共部分的代码
 
-- [stdcomm \- 工蜂内网版]( https///github.com/zhlinh/fext-stdcomm )
+- [stdcomm \- 工蜂内网版]( https://github.com/zhlinh/fndyext-stdcomm )
 
 - stdcomm README
   
-  - [English]( https///github.com/zhlinh/fext-stdcomm/blob/master/README.md )
-  - [简体中文]( https///github.com/zhlinh/fext-stdcomm/blob/master/README.zh-cn.md )
+  - [English]( https://github.com/zhlinh/fndyext-stdcomm/blob/master/README.md )
+  - [简体中文]( https://github.com/zhlinh/fndyext-stdcomm/blob/master/README.zh-cn.md )
 
 - stdcomm Documentation
   
-  - [English]( http://fext-stdcomm.pages.oa.com/ )
-  - [简体中文]( http://fext-stdcomm.pages.oa.com/zh-cn/index.html )
+  - [English]( http://fndyext-stdcomm.pages.oa.com/ )
+  - [简体中文]( http://fndyext-stdcomm.pages.oa.com/zh-cn/index.html )
 
 ## 1. Releases
 
-发布版本见[releases](https///github.com/zhlinh/fext-stdcomm/-/releases)，版本变更记录见[changelog](https///github.com/zhlinh/fext-stdcomm}/blob/master/CHANGELOG.md)
+发布版本见[releases](https://github.com/zhlinh/fndyext-stdcomm/-/releases)，版本变更记录见[changelog](https://github.com/zhlinh/fndyext-stdcomm}/blob/master/CHANGELOG.md)
 
 - Android的sdk命名规则为: stdcomm_ANDROID_SDK-`版本号`-`release`.aar
 - iOS的framework命名规则为: stdcomm_IOS_FRAMEWORK-`版本号`-`release`.zip

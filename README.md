@@ -2,21 +2,21 @@
 
 > Code for stdcomm common parts of Android and iOS.
 
-- [stdcomm \- Git Intranet Version]( https///github.com/zhlinh/fext-stdcomm )
+- [stdcomm \- Git Intranet Version]( https://github.com/zhlinh/fndyext-stdcomm )
 
 - stdcomm README
 
-  - [English]( https///github.com/zhlinh/fext-stdcomm/blob/master/README.md )
-  - [简体中文]( https///github.com/zhlinh/fext-stdcomm/blob/master/README.zh-cn.md )
+  - [English]( https://github.com/zhlinh/fndyext-stdcomm/blob/master/README.md )
+  - [简体中文]( https://github.com/zhlinh/fndyext-stdcomm/blob/master/README.zh-cn.md )
 
 - stdcomm Documentation
 
-  - [English]( https://github.com/zhlinh/fext-stdcomm/wiki/ )
-  - [简体中文]( https://github.com/zhlinh/fext-stdcomm/wiki/zh-cn/index.html )
+  - [English]( https://github.com/zhlinh/fndyext-stdcomm/wiki/ )
+  - [简体中文]( https://github.com/zhlinh/fndyext-stdcomm/wiki/zh-cn/index.html )
 
 ## 1. Releases
 
-See [releases](https///github.com/zhlinh/fext-stdcomm/-/releases) for published versions and [changelog](https///github.com/zhlinh/fext-stdcomm/blob/master/CHANGELOG.md) for version changes.
+See [releases](https://github.com/zhlinh/fndyext-stdcomm/-/releases) for published versions and [changelog](https://github.com/zhlinh/fndyext-stdcomm/blob/master/CHANGELOG.md) for version changes.
 
 - The SDK naming convention for Android is: STDCOMM_ANDROID_SDK-`version`-`release`.aar
 - The framework naming convention for iOS is: STDCOMM_IOS_FRAMEWORK-`version`-`release`.zip
