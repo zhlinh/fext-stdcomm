@@ -20,7 +20,7 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
--keep class com.mojeter.fext.**.wrapper.**{*;}
--dontwarn com.mojeter.fext.**.wrapper.**
--keep class com.mojeter.fext.**.jni.**{*;}
--dontwarn com.mojeter.fext.**.jni.**
+-keep class com.mojeter.fndyext.**.wrapper.**{*;}
+-dontwarn com.mojeter.fndyext.**.wrapper.**
+-keep class com.mojeter.fndyext.**.jni.**{*;}
+-dontwarn com.mojeter.fndyext.**.jni.**

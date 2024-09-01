@@ -1,8 +1,8 @@
 [versions]
 # main project
-commMainProject = "25.2.9519653"
+commMainProject = "0.0.1"
 commIsRelease = "true"
-commGroupId = "com.mojeter.fext"
+commGroupId = "com.mojeter.fndyext"
 commDependencies = """
                     EMPTY
                    """

@@ -5,9 +5,9 @@
 // Created by ccgo on 2024-06-02.
 // Copyright 2024 ccgo Project Authors. All rights reserve.
 
-package com.mojeter.fext.stdcomm.wrapper;
+package com.mojeter.fndyext.stdcomm.wrapper;
 
-import com.mojeter.fext.stdcomm.jni.StdCommJni;
+import com.mojeter.fndyext.stdcomm.jni.StdCommJni;
 
 /*!
  * \if ZH-CN

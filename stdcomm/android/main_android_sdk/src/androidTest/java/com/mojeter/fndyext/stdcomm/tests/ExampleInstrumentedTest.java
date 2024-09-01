@@ -5,7 +5,7 @@
 // Created by ccgo on 2024-06-02.
 // Copyright 2024 ccgo Project Authors. All rights reserved.
 
-package com.mojeter.fext.stdcomm.tests;
+package com.mojeter.fndyext.stdcomm.tests;
 
 import static org.junit.Assert.assertEquals;
 
@@ -16,7 +16,7 @@ import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
-import com.mojeter.fext.stdcomm.wrapper.StdComm;
+import com.mojeter.fndyext.stdcomm.wrapper.StdComm;
 
 import org.junit.After;
 import org.junit.Before;
@@ -58,7 +58,7 @@ public class ExampleInstrumentedTest {
     @Test
     public void getPackageName() {
         Log.d(TAG, "testPackageName start");
-        assertEquals("com.mojeter.fext.stdcomm.test", mAppContext.getPackageName());
+        assertEquals("com.mojeter.fndyext.stdcomm.test", mAppContext.getPackageName());
     }
     @Test
     public void setDebug() {

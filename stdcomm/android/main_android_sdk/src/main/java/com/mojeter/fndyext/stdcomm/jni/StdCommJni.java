@@ -5,7 +5,7 @@
 // Created by ccgo on 2024-06-02.
 // Copyright 2024 ccgo Project Authors. All rights reserved.
 
-package com.mojeter.fext.stdcomm.jni;
+package com.mojeter.fndyext.stdcomm.jni;
 
 public class StdCommJni {
     static {
